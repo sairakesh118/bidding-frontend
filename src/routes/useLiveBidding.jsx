@@ -11,7 +11,7 @@ export const useLiveBidding = (itemId) => {
     socketRef.current = ws;
 
     ws.onopen = () => {
-      console.log("WebSocket connected");
+      //console.log("WebSocket connected");
     };
 
     ws.onmessage = (event) => {
@@ -28,7 +28,7 @@ export const useLiveBidding = (itemId) => {
     };
 
     ws.onclose = () => {
-      console.log("WebSocket disconnected");
+      //console.log("WebSocket disconnected");
     };
 
     return () => ws.close();

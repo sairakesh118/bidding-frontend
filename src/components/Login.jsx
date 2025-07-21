@@ -36,7 +36,7 @@ function Login({changeMethod}) {
   const onSubmit = async (data) => {
     try {
       const response = await login(data).unwrap();
-      console.log(response)
+      //console.log(response)
       if (!response || !response.access_token) {
         throw new Error("Login failed: No access token received");
       }
@@ -55,7 +55,7 @@ function Login({changeMethod}) {
        
       navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       toast.error(error.data?.message || "Login failed");
     }
   };

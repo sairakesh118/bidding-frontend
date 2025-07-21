@@ -267,7 +267,7 @@ const
       ...prev,
       [itemId]: value
     }));
-    console.log(bidAmounts)
+    //console.log(bidAmounts)
   };
 
   const placeBid = async (item) => {
@@ -717,7 +717,7 @@ const
                       Bid
                     </Button>
                     
-                    
+
                   </div>
                 </div>
               ) : (

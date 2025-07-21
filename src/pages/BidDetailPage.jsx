@@ -147,12 +147,12 @@ const BidDetailPage = () => {
 
   // Countdown timer effect
   useEffect(() => {
-    console.log(item?.end_time);
-    console.log(formatToIST(item?.end_time));
+    //console.log(item?.end_time);
+    //console.log(formatToIST(item?.end_time));
     const date = new Date(item?.end_time);
     const istOffset = 5.5 * 60 * 60 * 1000;
     const istDate = new Date(date.getTime() + istOffset);
-    console.log(istDate - new Date());
+    //console.log(istDate - new Date());
 
 
   if (!item?.end_time) return;
