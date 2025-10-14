@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Tabs } from "../components/ui/tabs";
 import { Separator } from "../components/ui/separator";
 import Login from "../components/Login";
-import Register from "../components/register";
+import Register from "../components/Register";
 import { TypeAnimation } from 'react-type-animation';
 import Lottie from "lottie-react"
 import loginanimation from "./loginanimation.json";
