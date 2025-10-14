@@ -27,7 +27,7 @@ export const authApi = apiSlice.injectEndpoints({
         return response;
       },
       transformErrorResponse: (error) => {
-        console.error("API Error:", error);
+        //console.error("API Error:", error);
         return error;
       },
     }),

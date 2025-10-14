@@ -54,7 +54,7 @@ function BiddingItem( item ) {
       try {
          placeBidAmount(username, bidAmount);
       } catch (error) {
-        console.error('Failed to place bid:', error);
+        //console.error('Failed to place bid:', error);
         alert('Failed to place bid. Please try again.');
       }
     } else {
@@ -142,7 +142,7 @@ const
   const parseEndTime = (endTime) => {
     try {
       if (!endTime) {
-        console.warn('No end_time provided');
+        //console.warn('No end_time provided');
         return new Date();
       }
 
@@ -169,7 +169,7 @@ const
       
       return new Date(endTime);
     } catch (error) {
-      console.error('Error parsing date:', endTime, error);
+      //console.error('Error parsing date:', endTime, error);
       return new Date();
     }
   };
@@ -209,7 +209,7 @@ const
           const endTime = new Date(endTimeUtc.getTime() + istOffsetMs);
           
           if (isNaN(endTime.getTime())) {
-            console.error(`Invalid end_time for item ${item._id || item.id}:`, item.end_time);
+            //console.error(`Invalid end_time for item ${item._id || item.id}:`, item.end_time);
             updatedTimers[item._id || item.id] = 0;
             return;
           }
@@ -219,7 +219,7 @@ const
           updatedTimers[item._id || item.id] = timeLeft;
           
         } catch (error) {
-          console.error(`Error processing timer for item ${item._id || item.id}:`, error);
+          //console.error(`Error processing timer for item ${item._id || item.id}:`, error);
           updatedTimers[item._id || item.id] = 0;
         }
       });
@@ -279,7 +279,7 @@ const
       try {
         await placeBidAmount(username, bidAmount);
       } catch (error) {
-        console.error('Failed to place bid:', error);
+        //console.error('Failed to place bid:', error);
         alert('Failed to place bid. Please try again.');
       }
     } else {

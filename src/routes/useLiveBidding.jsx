@@ -24,7 +24,7 @@ export const useLiveBidding = (itemId) => {
     };
 
     ws.onerror = (err) => {
-      console.error("WebSocket error", err);
+      //console.error("WebSocket error", err);
     };
 
     ws.onclose = () => {

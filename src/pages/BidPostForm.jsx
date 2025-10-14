@@ -85,7 +85,7 @@ const BidPostForm = () => {
         image_url: imageUrl,
       }));
     } catch (err) {
-      console.error("Upload failed:", err);
+      //console.error("Upload failed:", err);
       setErrors(prev => ({ ...prev, image: "Image upload failed. Please try again." }));
     } finally {
       setUploading(false);
@@ -140,7 +140,7 @@ const BidPostForm = () => {
       });
       alert("Auction item posted successfully!");
     } catch (error) {
-      console.error("Failed to create item:", error);
+      //console.error("Failed to create item:", error);
       alert("Failed to post auction item. Please try again.");
     }
   };

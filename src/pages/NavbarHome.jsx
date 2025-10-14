@@ -16,7 +16,7 @@ const NavbarHome = () => {
       navigate("/auth");
     } catch (error) {
       toast.error("Logout failed");
-      console.error("Logout error:", error);
+      //console.error("Logout error:", error);
     }
   };
 

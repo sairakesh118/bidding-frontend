@@ -160,7 +160,7 @@ const BidDetailPage = () => {
 
   const endTimeUTC = new Date(item.end_time);
   if (isNaN(endTimeUTC.getTime())) {
-    console.error("Invalid end_time:", item.end_time);
+    //console.error("Invalid end_time:", item.end_time);
     return;
   }
 
@@ -193,7 +193,9 @@ const BidDetailPage = () => {
 
 
   // Format UTC ISO string to IST for display
-  
+  //console.log(item)
+  const user = useSelector((state) => state.auth.user);
+  //console.log(user)
 
   const formatTimeAgo = (timestamp) => {
     const now = new Date();
@@ -210,6 +212,10 @@ const BidDetailPage = () => {
   };
 
   const handlePlaceBid = () => {
+    if (user.id===item.owner_id){
+      alert("You cannot bid on your own item.");
+      return;
+    }
     const numericBid = parseFloat(bidAmount);
     const currentBidValue = currentBid ?? item.current_bid;
 
@@ -222,7 +228,6 @@ const BidDetailPage = () => {
       alert("This auction has ended. No more bids can be placed.");
       return;
     }
-    console.log(username)
     placeBid(numericBid,username);
     setShowModal(false);
     setBidAmount("");
