@@ -11,7 +11,6 @@ import LandingPage from './pages/LandingPage';
 import BidPostForm from './pages/BidPostForm';
 import NotFoundPage from './pages/NotFoundPage';
 import Register from './components/Register';
-import Example from './pages/example';
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
        <Route path="/profile" element={<ProfilePage />} />
        <Route path="/" element={<LandingPage />} />
        <Route path="/create-bid" element={<BidPostForm/>} />
-       <Route path="/example" element={<Example />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
