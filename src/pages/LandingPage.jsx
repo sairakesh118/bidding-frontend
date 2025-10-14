@@ -46,7 +46,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "../components/navigationmenu"
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 const ParallaxBackground = () => {
   return (
