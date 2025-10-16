@@ -7,7 +7,7 @@ export const useLiveBidding = (itemId) => {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://localhost:8000/ws/bid/${itemId}`);
+    const ws = new WebSocket(`wss://bidding-backend-v3d6.onrender.com/ws/bid/${itemId}`);
     socketRef.current = ws;
 
     ws.onopen = () => {
