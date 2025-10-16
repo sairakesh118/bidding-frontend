@@ -1,6 +1,9 @@
 import { use, useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { logout } from '../redux/features/auth/authSlice';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +19,20 @@ export default function Navbar() {
     { name: 'Contact', path: '/contact' }
   ];
 
+  const user =useSelector((state)=>state.auth.user);
+  console.log("User in Navbar:", user);
+  const dispatch = useDispatch();
   const categories = ['Electronics', 'Fashion', 'Home & Garden', 'Art & Collectibles', 'Sports'];
+const handleLogout = () => {
+    try {
+      dispatch(logout());
+      toast.success("Logged out successfully");
+      navigate("/auth");
+    } catch (error) {
+      toast.error("Logout failed");
+      //console.error("Logout error:", error);
+    }
+  };
 
   return (
     <header className="bg-white shadow-sm fixed top-0 w-full z-50 border-b border-gray-200">
@@ -56,6 +72,10 @@ export default function Navbar() {
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
                             onClick={(e) => {
                               e.preventDefault();
+                              if(!user){
+                                navigate('/auth');
+                                return;
+                              }
                               navigate(`/category/${category.toLowerCase()}`);
                               setIsDropdownOpen(false);
                             }}
@@ -72,6 +92,10 @@ export default function Navbar() {
                     className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
                     onClick={(e) => {
                       e.preventDefault();
+                      if(item.name==="Auctions" && !user){
+                        navigate('/auth');
+                        return;
+                      }
                       navigate(item.path);
                     }}
                   >
@@ -84,12 +108,21 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
-            <button
-              onClick={() => navigate('/auth')}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Login
-            </button>
+            {!user?                <button
+                  onClick={() => {
+                    navigate('/auth');
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors duration-200"
+                >
+                  Login
+                </button>: <button 
+            onClick={handleLogout} 
+            className="flex items-center space-x-2 px-4 py-2 rounded-full text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200 ease-in-out group"
+          >
+            <LogOut className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+            <span className="hidden sm:inline font-medium">Logout</span>
+          </button>}  
           </div>
 
           {/* Mobile menu button */}
@@ -160,7 +193,7 @@ export default function Navbar() {
               
               {/* Mobile Login Button */}
               <div className="pt-4 border-t border-gray-200">
-                <button
+                {!user?                <button
                   onClick={() => {
                     navigate('/auth');
                     setIsMenuOpen(false);
@@ -168,7 +201,13 @@ export default function Navbar() {
                   className="w-full bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors duration-200"
                 >
                   Login
-                </button>
+                </button>: <button 
+            onClick={handleLogout} 
+            className="flex items-center space-x-2 px-4 py-2 rounded-full text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200 ease-in-out group"
+          >
+            <LogOut className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+            <span className="hidden sm:inline font-medium">Logout</span>
+          </button>}
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ export const useLiveBidding = (itemId) => {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    const ws = new WebSocket(`${import.meta.env.VITE_API_URL}/bid/${itemId}`);
+    const ws = new WebSocket(`ws://localhost:8000/ws/bid/${itemId}`);
     socketRef.current = ws;
 
     ws.onopen = () => {
